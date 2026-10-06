@@ -1,0 +1,18 @@
+format_version: "13"
+
+project_type: android
+
+workflows:
+  primary:
+    steps:
+      - activate-ssh-key@4: {}
+      - git-clone@8: {}
+      - set-java-version@1:
+          inputs:
+            - set_java_version: "17"
+      - gradle-runner@3:
+          inputs:
+            - gradle_file_path: ""
+            - gradle_task: "assembleDebug"
+    artifacts:
+      - app/build/outputs/apk/debug/app-debug.apk
